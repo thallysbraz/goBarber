@@ -12,7 +12,7 @@ class UserController {
     }
     // criando Usuário no Banco
     const { id, name, email, provider } = await User.create(req.body);
-    // pegando retorno somente dos dados importantes
+    // pegando retorno somente dos dados importantes no front
 
     return res.json({ id, name, email, provider });
   }
