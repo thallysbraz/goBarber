@@ -1,6 +1,7 @@
 import express from "express";
 
-import routes from "./routes";
+import routes from "./routes"; //import de rotas
+import "./database/index"; // import da conexão com banco
 
 class App {
   constructor() {
@@ -20,3 +21,5 @@ class App {
 }
 
 export default new App().server;
+
+// yarn sequelize migration:create --name=create-users
