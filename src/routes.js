@@ -8,6 +8,7 @@ import User from "./app/models/User"; //Model de Usuário
 
 import UserController from "./app/controllers/UserController"; // UserController
 import SessionController from "./app/controllers/SessionController"; // SessionController
+import FileController from "./app/controllers/FileController"; // FileController
 
 const routes = new Router(); //instanciando rotas
 const upload = multer(multerConfig);
@@ -19,8 +20,6 @@ routes.use(authMiddleware); //Middleware global || valido para rotas abaixo
 
 routes.put("/users", UserController.update); //rota pra atualizar usuário
 
-routes.post("/files", upload.single("file"), (req, res) => {
-  return res.json({ ok: "true" });
-});
+routes.post("/files", upload.single("file"), FileController.store);
 
 export default routes;
