@@ -1,15 +1,19 @@
 # goBarber
 
-## Biblioteca de Desenvolvimento
+|    Autor     | Versão |    Data    |
+| :----------: | :----: | :--------: |
+| Thallys Braz |  1.0   | 21/01/2020 |
 
-|                                 Nome                                 |  Função   |
-| :------------------------------------------------------------------: | :-------: |
-|                    [eslint](https://eslint.org/)                     | Validação |
-|                    [nodemon](https://nodemon.io/)                    |    ---    |
-| [sequelize-cli](https://sequelize.org/master/manual/migrations.html) |    ---    |
-|           [sucrase](https://www.npmjs.com/package/sucrase)           |    ---    |
+### Biblioteca de Desenvolvimento
 
-## Bibliotecas de produção
+|                                 Nome                                 |                                                         Função                                                         |
+| :------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: |
+|                    [eslint](https://eslint.org/)                     | O ESLint analisa estaticamente seu código para encontrar rapidamente problemas. Ou seja, ajuda na formatação do código |
+|                    [nodemon](https://nodemon.io/)                    |                                                          ---                                                           |
+| [sequelize-cli](https://sequelize.org/master/manual/migrations.html) |                                                          ---                                                           |
+|           [sucrase](https://www.npmjs.com/package/sucrase)           |                                                          ---                                                           |
+
+### Bibliotecas de produção
 
 |                            Nome                            |                                                                                                             Função                                                                                                             |
 | :--------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
