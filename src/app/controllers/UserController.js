@@ -35,7 +35,10 @@ class UserController {
 
       return res.json({ id, name, email, provider });
     } catch (erros) {
-      return res.json({ error: "Houve error interno na aplicação" });
+      return res.json({
+        error: "Houve error interno na aplicação",
+        erro: erros
+      });
     }
   }
 
@@ -86,7 +89,10 @@ class UserController {
 
       return res.json({ id, name, email, provider });
     } catch (erros) {
-      return res.json({ error: "Houve error interno na aplicação" });
+      return res.json({
+        error: "Houve error interno na aplicação",
+        erro: erros
+      });
     }
   }
 }
