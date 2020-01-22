@@ -7,6 +7,7 @@ class AppointmentController {
   async store(req, res) {
     //try/catch por volta de todo codigo para capturar e tratar erros internos
     try {
+      //fazendo validação com Yup
       const schema = Yup.object().shape({
         provider_id: Yup.number() //id numero
           .integer() //inteiro
@@ -14,14 +15,16 @@ class AppointmentController {
         date: Yup.date().required() //data obrigatoria
       });
 
+      //Se a validação não passar, retorna o erro
       if (!(await schema.isValid(req.body))) {
         return res.status(400).json({ error: "Validationfails" });
       }
 
+      //Se passar ... next();
       const { provider_id, date } = req.body; //recebendo dados
 
+      // verifica se o usuario é um fornecedor
       const checkIsProvider = await User.findOne({
-        // verifica se o usuario é um fornecedor
         //id pertence a um fornecedor, e se provider: true;
         where: { id: provider_id, provider: true }
       });

@@ -24,4 +24,5 @@
 |    [pg-hstore](https://www.npmjs.com/package/pg-hstore)    |
 |            [sequelize](https://sequelize.org/)             |
 |          [Yup](https://www.npmjs.com/package/yup)          |
-|                         [Multer]()                         |
+|       [Multer](https://www.npmjs.com/package/multer)       |
+|     [Date-FNS](https://www.npmjs.com/package/date-fns)     |
