@@ -3,8 +3,35 @@ import { startOfHour, parseISO, isBefore } from "date-fns";
 
 import Appointment from "../models/Appointment"; //Model de agendamentos
 import User from "../models/User"; //Model de usuário
+import File from "../models/File"; //Model de arquivos
 
 class AppointmentController {
+  //listando agendamentos de usuário
+  async index(req, res) {
+    try {
+      const appointments = await Appointment.findAll({
+        where: {
+          user_id: req.userId,
+          canceled_at: null
+        },
+        order: ["date"],
+        attributes: ["id", "date"],
+        include: [
+          {
+            model: User,
+            as: "provider",
+            attributes: ["id", "name"],
+            include: [{ model: File, as: "avatar" }]
+          }
+        ]
+      });
+
+      return res.json(appointments);
+    } catch (erros) {
+      return res.json({ msg: "Houve erro interno na aplicação", erros: erros });
+    }
+  }
+
   //store para criar agendamento
   async store(req, res) {
     //try/catch por volta de todo codigo para capturar e tratar erros internos
@@ -83,3 +110,4 @@ class AppointmentController {
 }
 
 export default new AppointmentController();
+//aula 07 - fazer de daqui
