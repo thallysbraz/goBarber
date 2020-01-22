@@ -15,19 +15,11 @@ class AppointmentController {
       return res.status(400).json({ error: "Validationfails" });
     }
 
-    const { provider_id, date } = req.body;
-
-    if (provider_id === 7) {
-      /* 
-      Check if provider_id is a provider
-    */
-
-      console.log("number");
-    } else {
-      console.log("is number not");
-    }
+    const { provider_id, date } = req.body; //recebendo dados
 
     const checkIsProvider = await User.findOne({
+      // verifica se o usuario é um fornecedor
+      //id pertence a um fornecedor, e se provider: true;
       where: { id: provider_id, provider: true }
     });
 
