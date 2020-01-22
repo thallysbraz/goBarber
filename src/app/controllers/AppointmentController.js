@@ -1,6 +1,8 @@
-import Appointment from "../models/Appointment"; //Model de agendamentos
-import User from "../models/User";
 import * as Yup from "yup";
+import { startOfHour, parseISO, isBefore } from "date-fns";
+
+import Appointment from "../models/Appointment"; //Model de agendamentos
+import User from "../models/User"; //Model de usuário
 
 class AppointmentController {
   //store para criar agendamento
@@ -36,6 +38,37 @@ class AppointmentController {
         });
       }
       //Se for um fornecedor ... next();
+
+      //hourStart pra pegar a hora, desconsiderando minutos e segundos
+      const hourStart = startOfHour(parseISO(date));
+
+      //check for past dates
+      if (isBefore(hourStart, new Date())) {
+        // se a hora/data informada é anterior a hora/data atual
+        return res.status(400).json({
+          error: "Past dates are not permitted"
+        });
+      }
+
+      //cazer comentario
+      const checkAvailability = await Appointment.findOne({
+        where: {
+          provider_id,
+          canceled_at: null,
+          date: hourStart
+        }
+      });
+
+      // se ja existe um agendamento nesse horario
+      if (checkAvailability) {
+        return res
+          .status(400) // ele retorna um json com o erro
+          .json({
+            error: "Appointment date is not available "
+          });
+      }
+
+      //save appointment
       const appointment = await Appointment.create({
         user_id: req.userId,
         provider_id,
@@ -44,10 +77,7 @@ class AppointmentController {
 
       return res.json(appointment); //retorna os dados
     } catch (erros) {
-      return res.json({
-        erros: "houve error interno na aplicação",
-        erro: erros
-      });
+      return res.json({ msg: "Houve erro interno na aplicação", erros: erros });
     }
   }
 }
