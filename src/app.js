@@ -1,4 +1,5 @@
 import express from "express";
+import path from "path";
 
 import routes from "./routes"; //import de rotas
 import "./database/index"; // import da conexão com banco
@@ -13,6 +14,12 @@ class App {
 
   middlewares() {
     this.server.use(express.json());
+    //express.static que serve arquivos estaticos que podem ser acessados diretamente pelo navegador.
+    //Passando a rota "/files", e o path dos arquivos
+    this.server.use(
+      "/files",
+      express.static(path.resolve(__dirname, "..", "tmp", "uploads"))
+    );
   }
 
   routes() {
