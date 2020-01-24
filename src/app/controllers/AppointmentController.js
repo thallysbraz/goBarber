@@ -9,6 +9,8 @@ class AppointmentController {
   //listando agendamentos de usuário
   async index(req, res) {
     try {
+      const { page = 1 } = req.query; //recebendo paginação
+
       const appointments = await Appointment.findAll({
         where: {
           user_id: req.userId,
@@ -16,6 +18,8 @@ class AppointmentController {
         },
         order: ["date"],
         attributes: ["id", "date"],
+        limit: 20, //listando no maximo 20 registros
+        offset: (page - 1) * 20, //pulando registros ja listados
         include: [
           {
             model: User,
