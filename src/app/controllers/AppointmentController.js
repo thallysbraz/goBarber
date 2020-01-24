@@ -81,7 +81,7 @@ class AppointmentController {
         });
       }
 
-      //cazer comentario
+      //procurando agendamento nesse horario
       const checkAvailability = await Appointment.findOne({
         where: {
           provider_id,
@@ -99,6 +99,7 @@ class AppointmentController {
           });
       }
 
+      //se não existir salva
       //save appointment
       const appointment = await Appointment.create({
         user_id: req.userId,
@@ -114,4 +115,3 @@ class AppointmentController {
 }
 
 export default new AppointmentController();
-//aula 07 - fazer de daqui
