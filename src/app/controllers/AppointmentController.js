@@ -1,5 +1,6 @@
 import * as Yup from "yup";
-import { startOfHour, parseISO, isBefore, format } from "date-fns";
+import pt from "date-fns/locale/pt";
+import { startOfHour, parseISO, isBefore, format, subHours } from "date-fns";
 
 import Appointment from "../models/Appointment"; //Model de agendamentos
 import User from "../models/User"; //Model de usuário
@@ -121,7 +122,7 @@ class AppointmentController {
 
       //salvando notificação no MongoDB
       await Notification.create({
-        content: `Novo agendamento de ${user.name} para dia 22 de Fevereiro as 8h40m`,
+        content: `Novo agendamento de ${user.name} para ${formattedDate}`,
         user: provider_id
       });
 

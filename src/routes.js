@@ -4,14 +4,13 @@ import multer from "multer";
 import authMiddleware from "./app/middlewares/auth"; //middleware de autenticação
 import multerConfig from "./config/multer"; //config multer
 
-import User from "./app/models/User"; //Model de Usuário
-
 import UserController from "./app/controllers/UserController"; // UserController
 import SessionController from "./app/controllers/SessionController"; // SessionController
 import FileController from "./app/controllers/FileController"; // FileController
 import ProviderController from "./app/controllers/ProviderController"; //ProviderController
 import AppointmentController from "./app/controllers/AppointmentController"; //AppointmentController
 import ScheduleController from "./app/controllers/ScheduleController"; //ScheduleController
+import NotificationController from "./app/controllers/NotificationController"; //NotificationController
 
 const routes = new Router(); //instanciando rotas
 const upload = multer(multerConfig);
@@ -31,8 +30,12 @@ routes.get("/providers", ProviderController.index); //Rota para listar todos pre
 routes.get("/appointments", AppointmentController.index); //Rota para listar agendamento
 routes.post("/appointments", AppointmentController.store); //Rota para criar agendamento
 
+//rota de notificação de agendamento
+routes.get("/notifications", NotificationController.index); //Rota para listar
+
 //rotas de prestador de serviços
 routes.get("/schedule", ScheduleController.index);
+
 //rotas de arquivos
 routes.post("/files", upload.single("file"), FileController.store); //Rota pra salvar arquivos
 
