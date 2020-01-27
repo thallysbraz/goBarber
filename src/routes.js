@@ -32,6 +32,7 @@ routes.post("/appointments", AppointmentController.store); //Rota para criar age
 
 //rota de notificação de agendamento
 routes.get("/notifications", NotificationController.index); //Rota para listar
+routes.put("/notifications/:id", NotificationController.update); //Rota pra marcar como notificação lida
 
 //rotas de prestador de serviços
 routes.get("/schedule", ScheduleController.index);
