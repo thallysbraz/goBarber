@@ -16,9 +16,7 @@ class UserController {
           .required()
           .min(6)
       });
-      console.log(
-        "email" + req.body.email + "nome: " + req.body.name + req.body.password
-      );
+
       //Se nao passar na validação retorna
       if (!(await schema.isValid(req.body))) {
         return res.status(400).json({ error: "validation fails" });
