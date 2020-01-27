@@ -38,7 +38,7 @@ class AppointmentController {
     }
   }
 
-  //store para criar agendamento
+  //criando agendamento de usuário
   async store(req, res) {
     //try/catch por volta de todo codigo para capturar e tratar erros internos
     try {
@@ -129,6 +129,42 @@ class AppointmentController {
       return res.json(appointment); //retorna os dados
     } catch (erros) {
       return res.json({ msg: "Houve erro interno na aplicação", erros: erros });
+    }
+  }
+
+  //cancelando o agendamento
+  async delete(req, res) {
+    try {
+      //procurando agendamento
+      const appointment = await Appointment.findByPk(req.params.id);
+
+      //verificando se o usuário logado e o dono do agendamento
+      if (appointment !== req.userId) {
+        return res.status(401).json({
+          error: "You don't have permission to cancel this appointment."
+        });
+      }
+
+      //removendo 2h do horário do agendamento
+      const dateWithSub = subHours(appointment.date, 2);
+
+      //verificando se o horario ainda não passou
+      //appointment: 13h00m
+      //dateWithSub: 11h00m
+      //now: 11h30m
+
+      if (isBefore(dateWithSub, new Date())) {
+        return res.status(401).json({
+          error: "You can only cancel appointments 2hours in advance."
+        });
+      }
+
+      appointment.canceled_at = new Date();
+
+      await appointment.save();
+      return res.json(appointment);
+    } catch (err) {
+      return res.json({ msg: "Houve erro interno na aplicação", error: err });
     }
   }
 }
