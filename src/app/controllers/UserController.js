@@ -16,6 +16,9 @@ class UserController {
           .required()
           .min(6)
       });
+      console.log(
+        "email" + req.body.email + "nome: " + req.body.name + req.body.password
+      );
       //Se nao passar na validação retorna
       if (!(await schema.isValid(req.body))) {
         return res.status(400).json({ error: "validation fails" });
@@ -29,10 +32,11 @@ class UserController {
       if (userExists) {
         return res.status(400).json({ error: "User already exists" });
       }
-      // criando Usuário no Banco
-      const { id, name, email, provider } = await User.create(req.body);
-      // pegando retorno somente dos dados importantes no front
+      console.log("exercuto if");
 
+      const { id, name, email, provider } = await User.create(req.body);
+
+      // pegando retorno somente dos dados importantes no front
       return res.json({ id, name, email, provider });
     } catch (erros) {
       return res.json({

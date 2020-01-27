@@ -26,3 +26,8 @@
 |          [Yup](https://www.npmjs.com/package/yup)          |
 |       [Multer](https://www.npmjs.com/package/multer)       |
 |     [Date-FNS](https://www.npmjs.com/package/date-fns)     |
+
+## Comando VS Code
+
+CRTL + SHIFT + L
+ALT + SHIFT + (SETA)
