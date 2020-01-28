@@ -2,10 +2,14 @@ import * as Yup from "yup";
 import pt from "date-fns/locale/pt";
 import { startOfHour, parseISO, isBefore, format, subHours } from "date-fns";
 
+//Import dos models
 import Appointment from "../models/Appointment"; //Model de agendamentos
 import User from "../models/User"; //Model de usuário
 import File from "../models/File"; //Model de arquivos
 import Notification from "../schemas/Notification";
+
+//Email transporter
+import Mail from "../../lib/Mail";
 
 class AppointmentController {
   //listando agendamentos de usuário
@@ -135,8 +139,16 @@ class AppointmentController {
   //cancelando o agendamento
   async delete(req, res) {
     try {
-      //procurando agendamento
-      const appointment = await Appointment.findByPk(req.params.id);
+      //procurando agendamento e incluindo dados do provider para enviar email
+      const appointment = await Appointment.findByPk(req.params.id, {
+        include: [
+          {
+            model: User,
+            as: "provider",
+            attributes: ["name", "email"]
+          }
+        ]
+      });
 
       //verificando se o usuário logado e o dono do agendamento
       if (appointment.user_id !== req.userId) {
@@ -149,18 +161,29 @@ class AppointmentController {
       const dateWithSub = subHours(appointment.date, 2);
 
       //verificando se o horario ainda não passou
-      //appointment: 13h00m
-      //dateWithSub: 11h00m
-      //now: 11h30m
+      /* Explicando a verificação de horário
+      appointment: 13h00m
+      dateWithSub: 11h00m
+      now: 11h30m
+      */
       if (isBefore(dateWithSub, new Date())) {
         return res.status(401).json({
           error: "You can only cancel appointments 2hours in advance."
         });
       }
 
-      appointment.canceled_at = new Date();
+      appointment.canceled_at = new Date(); //set date de cancelamento
 
-      await appointment.save();
+      await appointment.save(); //salva o cancelamento
+
+      //enviando email
+      await Mail.sendMail({
+        to: `${appointment.provider.name} <${appointment.provider.email}>`,
+        subject: "Agendamento cancelado",
+        text: "Você tem um novo cancelamento"
+      });
+
+      //retorna os dados
       return res.json(appointment);
     } catch (err) {
       return res.json({ msg: "Houve erro interno na aplicação", error: err });
