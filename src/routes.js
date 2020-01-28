@@ -17,10 +17,14 @@ const routes = new Router(); //instanciando rotas
 
 const upload = multer(multerConfig);
 
+//ROTAS ABERTAS
+
 routes.post("/users", UserController.store); //rota para criar usuario
 routes.post("/session", SessionController.store); // rota pra autenticar usuario
 
 routes.use(authMiddleware); //Middleware global || valido para rotas abaixo
+
+//ROTAS PROTEGIDAS
 
 //rotas de usuários
 routes.put("/users", UserController.update); //Rota pra atualizar usuário

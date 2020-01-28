@@ -139,7 +139,7 @@ class AppointmentController {
       const appointment = await Appointment.findByPk(req.params.id);
 
       //verificando se o usuário logado e o dono do agendamento
-      if (appointment !== req.userId) {
+      if (appointment.user_id !== req.userId) {
         return res.status(401).json({
           error: "You don't have permission to cancel this appointment."
         });
@@ -152,7 +152,6 @@ class AppointmentController {
       //appointment: 13h00m
       //dateWithSub: 11h00m
       //now: 11h30m
-
       if (isBefore(dateWithSub, new Date())) {
         return res.status(401).json({
           error: "You can only cancel appointments 2hours in advance."
