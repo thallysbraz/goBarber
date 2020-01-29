@@ -31,3 +31,7 @@
 
 CRTL + SHIFT + L
 ALT + SHIFT + (SETA)
+
+## Sistema de filas
+
+kue -- bee queue

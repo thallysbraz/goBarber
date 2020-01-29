@@ -8,8 +8,8 @@ import User from "../models/User"; //Model de usuário
 import File from "../models/File"; //Model de arquivos
 import Notification from "../schemas/Notification";
 
-//Email transporter
-import Mail from "../../lib/Mail";
+import Queue from "../../lib/Queue"; //Gerenciador de fila
+import CancellationMail from "../jobs/CancellationMail";
 
 class AppointmentController {
   //listando agendamentos de usuário
@@ -177,19 +177,8 @@ class AppointmentController {
 
       await appointment.save(); //salva o cancelamento
 
-      //enviando email
-      await Mail.sendMail({
-        to: `${appointment.provider.name} <${appointment.provider.email}>`,
-        subject: "Agendamento cancelado",
-        template: "cancellation",
-        context: {
-          provider: appointment.provider.name,
-          user: appointment.provider.name,
-          date: format(appointment.date, "'dia' dd 'de' MMMM', às' H:mm'h'", {
-            locale: pt
-          })
-        }
-      });
+      //arrumando fila de email
+      Queue.add(CancellationMail.key, { appointment });
 
       //retorna os dados
       return res.json(appointment);

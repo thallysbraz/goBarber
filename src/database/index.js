@@ -23,7 +23,7 @@ class Database {
 
   mongo() {
     this.mongoConnection = mongoose
-      .connect("mongodb://localhost/goBarber", {
+      .connect("mongodb://localhost:27017/goBarber", {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         //useCreateIndex: true,
@@ -34,7 +34,7 @@ class Database {
       })
       .catch(err => {
         console.log("error ao conectar no banco " + err);
-      });
+      }); //teste
   }
 }
 
