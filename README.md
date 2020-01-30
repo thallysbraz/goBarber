@@ -3,6 +3,7 @@
 |    Autor     | Versão |    Data    |
 | :----------: | :----: | :--------: |
 | Thallys Braz |  1.0   | 21/01/2020 |
+| Thallys Braz |  1.1   | 31/01/2020 |
 
 ### Biblioteca de Desenvolvimento
 
@@ -29,9 +30,19 @@
 
 ## Comando VS Code
 
-CRTL + SHIFT + L
-ALT + SHIFT + (SETA)
+<p>CRTL + SHIFT + L</p>
+<p>ALT + SHIFT + (SETA)</p>
 
 ## Sistema de filas
 
 kue -- bee queue
+
+## Comando Sequelize
+
+<p>yarn sequelize migration:create --name=create-users</p>
+yarn sequelize db:migrate
+
+## Comando pra roda o projeto
+
+yarn dev
+yarn queue
