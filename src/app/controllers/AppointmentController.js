@@ -18,10 +18,7 @@ class AppointmentController {
       const { page = 1 } = req.query; //recebendo paginação
 
       const appointments = await Appointment.findAll({
-        where: {
-          user_id: req.userId,
-          canceled_at: null
-        },
+        where: { user_id: req.userId, canceled_at: null },
         order: ["date"],
         attributes: ["id", "date"],
         limit: 20, //listando no maximo 20 registros
@@ -31,7 +28,13 @@ class AppointmentController {
             model: User,
             as: "provider",
             attributes: ["id", "name"],
-            include: [{ model: File, as: "avatar" }]
+            include: [
+              {
+                model: File,
+                as: "avatar",
+                attributes: ["id", "path", "url"]
+              }
+            ]
           }
         ]
       });
