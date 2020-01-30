@@ -50,4 +50,3 @@ routes.post("/files", upload.single("file"), FileController.store); //Rota pra s
 export default routes;
 
 //fazer validação, um provider nao pode agendar serviço para ele mesmo
-//retoma aula 14 ... Deu error

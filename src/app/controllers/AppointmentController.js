@@ -8,8 +8,8 @@ import User from "../models/User"; //Model de usuário
 import File from "../models/File"; //Model de arquivos
 import Notification from "../schemas/Notification";
 
-//Email transporter
-import Mail from "../../lib/Mail";
+import Queue from "../../lib/Queue"; //Gerenciador de fila
+import CancellationMail from "../jobs/CancellationMail";
 
 class AppointmentController {
   //listando agendamentos de usuário
@@ -96,7 +96,7 @@ class AppointmentController {
         }
       });
 
-      // se ja existe um agendamento nesse horario
+      // se ja existe um agendamento nesse horario, retorna:
       if (checkAvailability) {
         return res
           .status(400) // ele retorna um json com o erro
@@ -106,6 +106,7 @@ class AppointmentController {
       }
 
       //se não existir salva
+
       //save appointment
       const appointment = await Appointment.create({
         user_id: req.userId,
@@ -114,8 +115,8 @@ class AppointmentController {
       });
 
       //Notify appointment provider
-      //buscando nome do usuário
-      const user = await User.findByPk(req.userId);
+
+      const user = await User.findByPk(req.userId); //buscando nome do usuário
 
       //formatando data
       const formattedDate = format(
@@ -136,7 +137,7 @@ class AppointmentController {
     }
   }
 
-  //cancelando o agendamento
+  //cancelando o agendamento -- continuar daqui
   async delete(req, res) {
     try {
       //procurando agendamento e incluindo dados do provider para enviar email
@@ -176,16 +177,13 @@ class AppointmentController {
 
       await appointment.save(); //salva o cancelamento
 
-      //enviando email
-      await Mail.sendMail({
-        to: `${appointment.provider.name} <${appointment.provider.email}>`,
-        subject: "Agendamento cancelado",
-        text: "Você tem um novo cancelamento"
-      });
+      //arrumando fila de email
+      Queue.add(CancellationMail.key, { appointment });
 
       //retorna os dados
       return res.json(appointment);
     } catch (err) {
+      console.log(err);
       return res.json({ msg: "Houve erro interno na aplicação", error: err });
     }
   }

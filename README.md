@@ -3,6 +3,7 @@
 |    Autor     | Versão |    Data    |
 | :----------: | :----: | :--------: |
 | Thallys Braz |  1.0   | 21/01/2020 |
+| Thallys Braz |  1.1   | 31/01/2020 |
 
 ### Biblioteca de Desenvolvimento
 
@@ -29,5 +30,23 @@
 
 ## Comando VS Code
 
-CRTL + SHIFT + L
-ALT + SHIFT + (SETA)
+<p>CRTL + SHIFT + L</p>
+<p>ALT + SHIFT + (SETA)</p>
+
+## Sistema de filas
+
+kue -- bee queue
+
+## Comando Sequelize
+
+<p>yarn sequelize migration:create --name=create-users</p>
+yarn sequelize db:migrate
+
+## Comando pra roda o projeto
+
+<p>yarn dev</p>
+<p>yarn queue</p>
+
+## Insomnia
+
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=goBarberInsomnia&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fthallysbraz%2FgoBarber%2Fbanco%2FinsomniaRoutes.json)
