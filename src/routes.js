@@ -12,6 +12,7 @@ import ProviderController from "./app/controllers/ProviderController"; //Provide
 import AppointmentController from "./app/controllers/AppointmentController"; //AppointmentController
 import ScheduleController from "./app/controllers/ScheduleController"; //ScheduleController
 import NotificationController from "./app/controllers/NotificationController"; //NotificationController
+import AvailableController from "./app/controllers/AvailableController"; //AvailableController
 
 const routes = new Router(); //instanciando rotas
 
@@ -31,6 +32,7 @@ routes.put("/users", UserController.update); //Rota pra atualizar usuário
 
 //rotas de providers
 routes.get("/providers", ProviderController.index); //Rota para listar todos prestadores de serviços
+routes.get("/providers/:providerId/available", AvailableController.index); //Rota para mostrar os agendamentos de apenas um provider
 
 //rotas de appointments do usuário
 routes.get("/appointments", AppointmentController.index); //Rota para listar agendamento
