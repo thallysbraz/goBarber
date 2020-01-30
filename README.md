@@ -44,5 +44,9 @@ yarn sequelize db:migrate
 
 ## Comando pra roda o projeto
 
-yarn dev
-yarn queue
+<p>yarn dev</p>
+<p>yarn queue</p>
+
+## Insomnia
+
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=goBarberInsomnia&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fthallysbraz%2FgoBarber%2Fbanco%2FinsomniaRoutes.json)
