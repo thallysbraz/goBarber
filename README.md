@@ -4,6 +4,7 @@
 | :----------: | :----: | :--------: |
 | Thallys Braz |  1.0   | 21/01/2020 |
 | Thallys Braz |  1.1   | 31/01/2020 |
+| Thallys Braz |  1.2   | 10/02/2020 |
 
 ### Biblioteca de Desenvolvimento
 
@@ -16,19 +17,28 @@
 
 ### Bibliotecas de produção
 
-|                         Biblioteca                         |
-| :--------------------------------------------------------: |
-|     [bcryptjs](https://www.npmjs.com/package/bcryptjs)     |
-|          [express](https://expressjs.com/pt-br/)           |
-| [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) |
-|           [pg](https://www.npmjs.com/package/pg)           |
-|    [pg-hstore](https://www.npmjs.com/package/pg-hstore)    |
-|            [sequelize](https://sequelize.org/)             |
-|          [Yup](https://www.npmjs.com/package/yup)          |
-|       [Multer](https://www.npmjs.com/package/multer)       |
-|     [Date-FNS](https://www.npmjs.com/package/date-fns)     |
+|                                          Biblioteca                                          |
+| :------------------------------------------------------------------------------------------: |
+|                      [bcryptjs](https://www.npmjs.com/package/bcryptjs)                      |
+|                           [express](https://expressjs.com/pt-br/)                            |
+|                  [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)                  |
+|                            [pg](https://www.npmjs.com/package/pg)                            |
+|                     [pg-hstore](https://www.npmjs.com/package/pg-hstore)                     |
+|                             [sequelize](https://sequelize.org/)                              |
+|                           [Yup](https://www.npmjs.com/package/yup)                           |
+|                        [Multer](https://www.npmjs.com/package/multer)                        |
+|                      [Date-FNS](https://www.npmjs.com/package/date-fns)                      |
+|                     [bee-queue](https://github.com/bee-queue/bee-queue)                      |
+|                  [Sentry/node](https://www.npmjs.com/package/@sentry/node)                   |
+|                        [Dotenv](https://www.npmjs.com/package/dotenv)                        |
+|          [Express-async-errors](https://www.npmjs.com/package/express-async-errors)          |
+|            [Express-handlebars](https://www.npmjs.com/package/express-handlebars)            |
+|                    [handlebars](https://www.npmjs.com/package/handlebars)                    |
+|                      [mongoose](https://www.npmjs.com/package/mongoose)                      |
+| [nodemailer-express-handlebars](https://www.npmjs.com/package/nodemailer-express-handlebars) |
+|                         [youch](https://www.npmjs.com/package/youch)                         |
 
-## Comando VS Code
+## Atalhos VS Code
 
 <p>CRTL + SHIFT + L</p>
 <p>ALT + SHIFT + (SETA)</p>
@@ -40,13 +50,46 @@ kue -- bee queue
 ## Comando Sequelize
 
 <p>yarn sequelize migration:create --name=create-users</p>
+<p>yarn sequelize db:migrate</p>
+
+## Comando pra executar o projeto
+
+### Variaveis de ambiente
+
+Antes de executar o projeto, troca o nome do arquivo
+
+```bash
+.env.example
+```
+
+Para
+
+```bash
+.env
+```
+
+E configure as variáveis de ambiente
+
+### Para rodar o projeto, execute os comando abaixo em ordem:
+
+```bash
 yarn sequelize db:migrate
+```
 
-## Comando pra roda o projeto
+Abra outro terminal e execute:
 
-<p>yarn dev</p>
-<p>yarn queue</p>
+```bash
+yarn dev
+```
+
+Abra mais um terminal e execute:
+
+```bash
+yarn queue
+```
 
 ## Insomnia
+
+Para testar o projeto em ambiente de desenvolvimento, baixe o [Insomnia](https://insomnia.rest) e depois click no botão abaixo:
 
 [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=goBarberInsomnia&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fthallysbraz%2FgoBarber%2Fbanco%2FinsomniaRoutes.json)
