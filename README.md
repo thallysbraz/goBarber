@@ -1,11 +1,12 @@
 # goBarber
 
-|    Autor     | Versão |    Data    |
-| :----------: | :----: | :--------: |
-| Thallys Braz |  1.0   | 21/01/2020 |
-| Thallys Braz |  1.1   | 31/01/2020 |
-| Thallys Braz |  1.2   | 10/02/2020 |
-| Thallys Braz |  1.3   | 10/02/2020 |
+|                     Autor                      | Versão |    Data    |
+| :--------------------------------------------: | :----: | :--------: |
+| [Thallys Braz](https://github.com/thallysbraz) |  1.0   | 21/01/2020 |
+| [Thallys Braz](https://github.com/thallysbraz) |  1.1   | 31/01/2020 |
+| [Thallys Braz](https://github.com/thallysbraz) |  1.2   | 10/02/2020 |
+| [Thallys Braz](https://github.com/thallysbraz) |  1.3   | 10/02/2020 |
+| [Thallys Braz](https://github.com/thallysbraz) |  1.4   | 10/02/2020 |
 
 ### Biblioteca de Desenvolvimento
 
@@ -86,7 +87,7 @@ Docker CE na versão 19.03.5 ou mais recente.
 <li>Insomnia</li>
 
 ```bash
-Software do Insomina instalado, porém utilizar o Postman também.
+Software do Insomina instalado, porém pode utilizar o Postman também.
 ```
 
 <li>Sugestão</li>
@@ -98,6 +99,28 @@ Tenha o MongoDB Compass e PostBird instalados, pois ajuda a gerenciar os bancos 
 </ul>
 
 ## Executar o projeto
+
+### Docker
+
+<p align="justify">Antes de rodar o projeto, e necessário baixar as imagens do docker, com os comandos abaixo:</p>
+
+<li>Postgres</li>
+
+```bash
+docker run --name NomeDoContainer -e POSTGRES_PASSWORD=SenhaDoBanco -p 5432:5432 -d postgres
+```
+
+<li>MongoDB</li>
+
+```bash
+docker run --name NomeDoContainer -p 27017:27017 -d -t mongo
+```
+
+<li>Redis</li>
+
+```bash
+docker run --name NomeDoContainer -p 6379:6379 -d -t redis:alpine
+```
 
 ### Variaveis de ambiente
 
@@ -113,9 +136,14 @@ Para
 .env
 ```
 
-E configure as variáveis de ambiente para fazer a integração com os bancos de dados, envio de email e sentry.
+<p align="justify">
+E configure as variáveis de ambiente para fazer a integração com os bancos de dados, envio de email e sentry. </p>
 
 ### Para rodar o projeto, execute os comando abaixo em ordem:
+
+```bash
+yarn install
+```
 
 ```bash
 yarn sequelize db:migrate
