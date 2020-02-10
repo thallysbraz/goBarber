@@ -5,6 +5,7 @@
 | Thallys Braz |  1.0   | 21/01/2020 |
 | Thallys Braz |  1.1   | 31/01/2020 |
 | Thallys Braz |  1.2   | 10/02/2020 |
+| Thallys Braz |  1.3   | 10/02/2020 |
 
 ### Biblioteca de Desenvolvimento
 
@@ -52,7 +53,51 @@ kue -- bee queue
 <p>yarn sequelize migration:create --name=create-users</p>
 <p>yarn sequelize db:migrate</p>
 
-## Comando pra executar o projeto
+## Softwares necessários
+
+<p align="justify">Para executar a aplicação, deve ter os seguintes softwares instalados:</p>
+
+|             Banco de Dados             |
+| :------------------------------------: |
+| [Postgres](https://www.postgresql.org) |
+|   [MongoDB](https://www.mongodb.com)   |
+|       [Reddis](https://redis.io)       |
+
+<ul>
+
+<li>NodeJS</li>
+
+```bash
+NodeJS na versão 10.16.2 ou mais recente.
+```
+
+<li>YARN</li>
+
+```bash
+Yarn na versão 1.17.3 ou mais recente.
+```
+
+<li>Docker CE</li>
+
+```bash
+Docker CE na versão 19.03.5 ou mais recente.
+```
+
+<li>Insomnia</li>
+
+```bash
+Software do Insomina instalado, porém utilizar o Postman também.
+```
+
+<li>Sugestão</li>
+
+```bash
+Tenha o MongoDB Compass e PostBird instalados, pois ajuda a gerenciar os bancos de dados.
+```
+
+</ul>
+
+## Executar o projeto
 
 ### Variaveis de ambiente
 
@@ -68,7 +113,7 @@ Para
 .env
 ```
 
-E configure as variáveis de ambiente
+E configure as variáveis de ambiente para fazer a integração com os bancos de dados, envio de email e sentry.
 
 ### Para rodar o projeto, execute os comando abaixo em ordem:
 
