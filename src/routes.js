@@ -20,8 +20,8 @@ const upload = multer(multerConfig);
 
 //ROTAS ABERTAS
 
-routes.post("/users", UserController.store); //rota para criar usuario
-routes.post("/session", SessionController.store); // rota pra autenticar usuario
+routes.post("/users", UserController.store); //Rota para criar usuário
+routes.post("/session", SessionController.store); //Rota pra autenticar usuario
 
 routes.use(authMiddleware); //Middleware global || valido para rotas abaixo
 
@@ -44,7 +44,7 @@ routes.get("/notifications", NotificationController.index); //Rota para listar
 routes.put("/notifications/:id", NotificationController.update); //Rota pra marcar como notificação lida
 
 //rotas de prestador de serviços
-routes.get("/schedule", ScheduleController.index);
+routes.get("/schedule", ScheduleController.index); //Rota para listar prestadores de serviços
 
 //rotas de arquivos
 routes.post("/files", upload.single("file"), FileController.store); //Rota pra salvar arquivos

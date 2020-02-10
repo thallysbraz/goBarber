@@ -6,7 +6,7 @@ import User from "../app/models/User"; //Model de user
 import File from "../app/models/File"; //Model de Arquivos
 import Appointment from "../app/models/Appointment"; //Model de Agendamentos
 
-const models = [User, File, Appointment]; // array com todos os models
+const models = [User, File, Appointment]; //Array com todos os models
 
 class Database {
   constructor() {
