@@ -1,5 +1,4 @@
 import "dotenv/config";
-
 import express from "express";
 import path from "path";
 import * as Sentry from "@sentry/node";
@@ -38,12 +37,16 @@ class App {
 
     this.server.use(Sentry.Handlers.errorHandler());
   }
+  //tratando erros
   exceptionHandler() {
+    //interceptando erros
     this.server.use(async (err, req, res, next) => {
+      //se o error for em desenvolvimento, retorna apenas um json
       if (process.env.NODE_ENV === "development") {
         const errors = await new Youch(err, req).toJSON();
         return res.status(500).json(errors);
       }
+      //se for em produção, retorna log Erro interno
       return res.status(500).json({ error: "Internal server error" });
     });
   }

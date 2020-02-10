@@ -20,18 +20,22 @@ class SessionController {
       }
       //Se passar ... next();
 
-      const { email, password } = req.body;
+      const { email, password } = req.body; //recebendo dados
 
-      const user = await User.findOne({ where: { email } });
+      const user = await User.findOne({ where: { email } }); //procurando usuário no banco de dados
+
+      //se nao encontrar
       if (!user) {
         return res.status(401).json({ error: "User not found" });
       }
+      //se encontrar, verifica a senha
       if (!(await user.checkPassword(password))) {
         return res.status(401).json({
           error: "Password does not math. Invalid"
         });
       }
-      const { id, name } = user;
+      //se a senha estiver correta
+      const { id, name } = user; //salva dados do usuário para criar sessão
       return res.json({
         user: {
           id,
@@ -41,7 +45,7 @@ class SessionController {
         token: jwt.sign({ id }, authConfig.secret, {
           expiresIn: authConfig.expiresIn
         })
-      });
+      }); //retorna os dados da sessão
     } catch (erros) {
       return res.json({ msg: "houve erro interno na aplicação", erro: erros });
     }

@@ -46,7 +46,7 @@ class ScheduleController {
         order: ["date"] //ordenado pela data
       });
 
-      return res.json(appointments); //retorna os agendamentos em json
+      return res.json(appointments); //retorna os agendamentos
     } catch (erros) {
       return res.json({ msg: "Houve erro interno na aplicação", erros: erros });
     }

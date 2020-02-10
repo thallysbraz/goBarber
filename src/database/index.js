@@ -13,6 +13,7 @@ class Database {
     this.init();
     this.mongo();
   }
+  //iniciando Sequelize e MongoDB
   init() {
     this.connection = new Sequelize(databaseConfig);
 
@@ -34,7 +35,7 @@ class Database {
       })
       .catch(err => {
         console.log("error ao conectar no banco " + err);
-      }); //teste
+      });
   }
 }
 

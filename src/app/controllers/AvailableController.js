@@ -71,8 +71,7 @@ class AvailableController {
       };
     });
 
-    //retorna os dados
-    return res.json(available);
+    return res.json(available); //retorna os dados
   }
 }
 
