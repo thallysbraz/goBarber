@@ -20,15 +20,17 @@ class AppointmentController {
       const appointments = await Appointment.findAll({
         where: { user_id: req.userId, canceled_at: null },
         order: ["date"],
-        attributes: ["id", "date"],
+        attributes: ["id", "date", "past", "cancelable"], //atributos que quero retornar
         limit: 20, //listando no maximo 20 registros
         offset: (page - 1) * 20, //pulando registros ja listados
         include: [
+          //incluindo dados do usuário
           {
             model: User,
             as: "provider",
             attributes: ["id", "name"],
             include: [
+              //incluindo dados do avatar
               {
                 model: File,
                 as: "avatar",
