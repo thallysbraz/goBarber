@@ -6,10 +6,10 @@ import { startOfHour, parseISO, isBefore, format, subHours } from "date-fns";
 import Appointment from "../models/Appointment"; //Model de agendamentos
 import User from "../models/User"; //Model de usuário
 import File from "../models/File"; //Model de arquivos
-import Notification from "../schemas/Notification";
+import Notification from "../schemas/Notification"; //Model de Notificações
 
 import Queue from "../../lib/Queue"; //Gerenciador de fila
-import CancellationMail from "../jobs/CancellationMail";
+import CancellationMail from "../jobs/CancellationMail"; //Enviando email
 
 class AppointmentController {
   //listando agendamentos de usuário
@@ -19,7 +19,7 @@ class AppointmentController {
 
       const appointments = await Appointment.findAll({
         where: { user_id: req.userId, canceled_at: null },
-        order: ["date"],
+        order: ["date"], //Ordena por data
         attributes: ["id", "date", "past", "cancelable"], //atributos que quero retornar
         limit: 20, //listando no maximo 20 registros
         offset: (page - 1) * 20, //pulando registros ja listados
@@ -41,7 +41,7 @@ class AppointmentController {
         ]
       });
 
-      return res.json(appointments);
+      return res.json(appointments); //retorna os dados
     } catch (erros) {
       return res.json({ msg: "Houve erro interno na aplicação", erros: erros });
     }
@@ -142,7 +142,7 @@ class AppointmentController {
     }
   }
 
-  //cancelando o agendamento -- continuar daqui
+  //cancelando o agendamento
   async delete(req, res) {
     try {
       //procurando agendamento e incluindo dados do provider para enviar email
@@ -185,8 +185,7 @@ class AppointmentController {
       //arrumando fila de email
       Queue.add(CancellationMail.key, { appointment });
 
-      //retorna os dados
-      return res.json(appointment);
+      return res.json(appointment); //retorna os dados
     } catch (err) {
       console.log(err);
       return res.json({ msg: "Houve erro interno na aplicação", error: err });

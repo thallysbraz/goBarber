@@ -1,5 +1,7 @@
 require("dotenv").config();
 
+//DataBase local
+
 /*module.exports = {
   dialect: "postgres",
   host: "localhost",
@@ -14,6 +16,7 @@ require("dotenv").config();
   }
 };
 */
+
 //DataBase with docker
 
 module.exports = {

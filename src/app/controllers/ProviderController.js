@@ -6,9 +6,9 @@ class ProviderController {
     //try/catch por volta de todo codigo para capturar e tratar erros internos
     try {
       const providers = await User.findAll({
-        //procrando usuarios que são provedores
+        //procurando usuarios que são provedores
         where: { provider: true },
-        attributes: ["id", "name", "email", "avatar_id"], // pegando somente dados úteis
+        attributes: ["id", "name", "email", "avatar_id"], //pegando somente dados úteis
         //incluindo relacionamento para pegar o avatar
         include: [
           {
@@ -19,7 +19,7 @@ class ProviderController {
         ]
       });
 
-      return res.json(providers);
+      return res.json(providers); //retorna os dados
     } catch (erros) {
       return res.json({
         msg: "Houve erro interno na aplicação",

@@ -8,8 +8,7 @@ class NotificationController {
     try {
       // verifica se o usuario é um fornecedor
       const checkIsProvider = await User.findOne({
-        //id pertence a um fornecedor, e se provider: true;
-        where: { id: req.userId, provider: true }
+        where: { id: req.userId, provider: true } //id pertence a um fornecedor, e se provider: true;
       });
 
       //Se não for um fornecedor, retorna o erro
@@ -25,8 +24,7 @@ class NotificationController {
         .sort({ createdAt: "desc" }) //ordenando por data
         .limit(20); //limite de 20 notificações
 
-      //retorna os dados
-      return res.json(notifications);
+      return res.json(notifications); //retorna os dados
     } catch (err) {
       return res.json({ msg: "Houve erro interno na aplicação", error: err });
     }
@@ -42,7 +40,7 @@ class NotificationController {
         { new: true } //retornando dado atualizado
       );
 
-      return res.json(notification);
+      return res.json(notification); //retorna os dados
     } catch (err) {
       return res.json({ msg: "Houve erro interno na aplicação", error: err });
     }

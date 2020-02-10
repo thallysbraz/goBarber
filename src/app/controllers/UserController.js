@@ -22,20 +22,21 @@ class UserController {
         return res.status(400).json({ error: "validation fails" });
       }
       //Se passar ... next();
+
       //verificando se existe algum usuário com email registrado no Banco
       const userExists = await User.findOne({
         where: { email: req.body.email }
       });
 
+      //se encontrar algum registro
       if (userExists) {
         return res.status(400).json({ error: "User already exists" });
       }
-      console.log("exercuto if");
 
+      //se não encontrou:
       const { id, name, email, provider } = await User.create(req.body);
 
-      // pegando retorno somente dos dados importantes no front
-      return res.json({ id, name, email, provider });
+      return res.json({ id, name, email, provider }); //retornando somente dos dados importantes para o front
     } catch (erros) {
       return res.json({
         error: "Houve error interno na aplicação",
@@ -87,9 +88,9 @@ class UserController {
           .json({ error: "Password does not math. Invalid" });
       }
 
-      const { id, name, provider } = await user.update(req.body);
+      const { id, name, provider } = await user.update(req.body); //salvando atualização
 
-      return res.json({ id, name, email, provider });
+      return res.json({ id, name, email, provider }); //retornando dados atualizados
     } catch (erros) {
       return res.json({
         error: "Houve error interno na aplicação",
