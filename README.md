@@ -7,6 +7,7 @@
 | [Thallys Braz](https://github.com/thallysbraz) |  1.2   | 10/02/2020 |
 | [Thallys Braz](https://github.com/thallysbraz) |  1.3   | 10/02/2020 |
 | [Thallys Braz](https://github.com/thallysbraz) |  1.4   | 10/02/2020 |
+| [Thallys Braz](https://github.com/thallysbraz) |  1.5   | 10/02/2020 |
 
 ### Biblioteca de Desenvolvimento
 
@@ -141,6 +142,8 @@ E configure as variáveis de ambiente para fazer a integração com os bancos de
 
 ### Para rodar o projeto, execute os comando abaixo em ordem:
 
+<li>Abra o terminal e execute, respectivamente os comandos: </li>
+
 ```bash
 yarn install
 ```
@@ -149,13 +152,11 @@ yarn install
 yarn sequelize db:migrate
 ```
 
-Abra outro terminal e execute:
-
 ```bash
 yarn dev
 ```
 
-Abra mais um terminal e execute:
+<li>Abra mais um terminal e execute: </li>
 
 ```bash
 yarn queue
