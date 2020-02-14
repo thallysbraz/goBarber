@@ -2,7 +2,9 @@ import jwt from "jsonwebtoken";
 import * as Yup from "yup";
 
 import authConfig from "../../config/auth"; //Configs para JWT
+
 import User from "../models/User"; //Model de Usuário
+import File from "../models/File";
 
 class SessionController {
   async store(req, res) {
@@ -22,7 +24,16 @@ class SessionController {
 
       const { email, password } = req.body; //recebendo dados
 
-      const user = await User.findOne({ where: { email } }); //procurando usuário no banco de dados
+      const user = await User.findOne({
+        where: { email },
+        include: [
+          {
+            model: File,
+            as: "avatar",
+            attributes: ["id", "path", "url"]
+          }
+        ]
+      }); //procurando usuário no banco de dados
 
       //se nao encontrar
       if (!user) {
@@ -35,12 +46,14 @@ class SessionController {
         });
       }
       //se a senha estiver correta
-      const { id, name } = user; //salva dados do usuário para criar sessão
+      const { id, name, avatar, provider } = user; //salva dados do usuário para criar sessão
       return res.json({
         user: {
           id,
           name,
-          email
+          email,
+          provider,
+          avatar
         },
         token: jwt.sign({ id }, authConfig.secret, {
           expiresIn: authConfig.expiresIn

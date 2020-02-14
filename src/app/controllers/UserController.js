@@ -1,6 +1,7 @@
 import * as Yup from "yup"; // Importando yup
 
 import User from "../models/User"; // Model de usuário
+import File from "../models/File";
 
 class UserController {
   //store para criar usuário
@@ -88,9 +89,19 @@ class UserController {
           .json({ error: "Password does not math. Invalid" });
       }
 
-      const { id, name, provider } = await user.update(req.body); //salvando atualização
+      await user.update(req.body); //salvando atualização
 
-      return res.json({ id, name, email, provider }); //retornando dados atualizados
+      const { id, name, avatar } = await User.findByPk(req.userId, {
+        include: [
+          {
+            model: File,
+            as: "avatar",
+            attributes: ["id", "path", "url"]
+          }
+        ]
+      });
+
+      return res.json({ id, name, email, avatar }); //retornando dados atualizados
     } catch (erros) {
       return res.json({
         error: "Houve error interno na aplicação",
