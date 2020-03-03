@@ -44,7 +44,8 @@
 ## Atalhos VS Code
 
 <p>CRTL + SHIFT + L</p>
-<p>ALT + SHIFT + (SETA)</p>
+<p>ALT + SHIFT + (SETA) para duplicar a linha</p>
+<p>Segure CRTL+K e aperte C para comentar uma linha</p>
 
 ## Sistema de filas
 

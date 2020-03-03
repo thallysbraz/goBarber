@@ -79,6 +79,13 @@ class AppointmentController {
           error: "You can only create appointments with providers"
         });
       }
+      //verificando se o usuário esta tentando agendar com ele mesmo
+      if (req.userId === provider_id) {
+        return res.status(401).json({
+          error: "you can create appointments with other service providers"
+        });
+      }
+
       //Se for um fornecedor ... next();
 
       //hourStart pra pegar a hora, desconsiderando minutos e segundos
@@ -187,7 +194,6 @@ class AppointmentController {
 
       return res.json(appointment); //retorna os dados
     } catch (err) {
-      console.log(err);
       return res.json({ msg: "Houve erro interno na aplicação", error: err });
     }
   }

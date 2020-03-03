@@ -1,6 +1,6 @@
 import app from "./app";
 
-const port = 3000; //porta que o server esta rodando
+const port = process.env.PORTA || 3001; //porta que o server esta rodando
 
 //start server NodeJS
 app.listen(port, () => {
